@@ -276,3 +276,5 @@ plugins/*
 platforms/*
 webpack/cached_uglify/
 yarn.lock
+
+.vscode
