@@ -29,7 +29,7 @@ class HtmlUtil():
         #
         s = re.compile('\r\n').sub('', s)
         s = s.replace(first_str, '')
-        ls_index = s.index(last_str)
+        ls_index = s.find(last_str)
         if ls_index:
             s = s[:ls_index]
         # s = replaceCharEntity(s)  # 替换实体
