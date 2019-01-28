@@ -6,7 +6,7 @@ class HtmlUtil():
     # 过滤字符串 html标签
     """
     def filter_tags(self, htmlstr):
-        last_str = "*v本文*"
+        last_str = "*v本"
         first_str = "『章节错误,点此举报』"
         re_cdata = re.compile('//<!\[CDATA\[[^>]*//\]\]>', re.I)  # 匹配CDATA
         re_script = re.compile(
@@ -30,6 +30,7 @@ class HtmlUtil():
         s = re.compile('\r\n').sub('', s)
         s = s.replace(first_str, '')
         ls_index = s.index(last_str)
-        s = s[:ls_index]
+        if ls_index:
+            s = s[:ls_index]
         # s = replaceCharEntity(s)  # 替换实体
         return s

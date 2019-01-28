@@ -45,12 +45,4 @@ class ChapterSpider(scrapy.Spider):
                 file.close()
         else:
             pass
-        """
-        file = open(filename,'w+')
-       
-        tmpStr = json.dumps(item)
-        
-        file.write(tmpStr)
-        
-        file.close();
-        """
+   
