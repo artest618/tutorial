@@ -15,7 +15,7 @@ class NovelSpider(scrapy.Spider):
     item_list = os.listdir(chapter_path)
     for i in range(0, len(item_list)):
         path = os.path.join(chapter_path, item_list[i])
-        if os.path.isfile(path):
+        if os.path.isfile(path) and os.path.basename(path).find("novel_info") == -1:
             start_urls.append("https://"+allowed_domains[0]+"/"+chpater_id+"/"
                               + os.path.basename(path).split(".")[0]+".html")
     print("--------------start-----------")

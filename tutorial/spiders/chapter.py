@@ -25,9 +25,14 @@ class ChapterSpider(scrapy.Spider):
 
     def parse(self, response):
         path = "../allnovel/"+self.novel_id+"/"
+        novel_info = {}
         
         # htmlUtil = HtmlUtil()
         items = response.css("#chapterlist a::attr(href)").extract()
+        textList = response.css("#chapterlist a::text").extract()
+        novel_info['title'] = response.css(
+            ".title::text").extract_first()
+        novel_info['chapters'] = []
         # if os.path.exists(path):
         #     pass
         # else:
@@ -35,14 +40,20 @@ class ChapterSpider(scrapy.Spider):
         if len(items)>0:
             items = items[1:]
             print(items)
-            for item in items:
+            for index in range(len(items)):
                 filename = ".json"
-                print(item.split("/")[2].split(".")[0])
-                chapter_id  = item.split("/")[2].split(".")[0]
+                chapter_id = items[index].split("/")[2].split(".")[0]
                 filename = path+chapter_id+filename
                 file = open(filename, 'w+')
                 file.write("")
                 file.close()
+                novel_info['chapters'].append(
+                    {"chapter_name": textList[index], "chapter_id": chapter_id})
+
+            file = open(path+'/novel_info_' +
+                        self.novel_id+'.json', 'w+')
+            file.write(json.dumps(novel_info))
+            file.close()
         else:
             pass
    
