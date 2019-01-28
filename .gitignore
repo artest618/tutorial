@@ -279,3 +279,4 @@ yarn.lock
 
 .vscode
 allnovel
+./configure --prefix=/usr/local/python3 --with-openssl=/usr/local/openssl
